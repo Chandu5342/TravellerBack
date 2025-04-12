@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
 router.post('/:id/save', (req, res) => {
   const projectId = req.params.id;
   const sql = 'INSERT INTO saved_projects (project_id) VALUES (?)';
-  db.query(sql, [projectId], (err, result) => {
+  db.query(sql, [projectId], (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Project saved!' });
   });
@@ -42,7 +42,7 @@ router.get('/saved', (req, res) => {
 router.delete('/:id/unsave', (req, res) => {
   const projectId = req.params.id;
   const sql = 'DELETE FROM saved_projects WHERE project_id = ?';
-  db.query(sql, [projectId], (err, result) => {
+  db.query(sql, [projectId], (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Project unsaved!' });
   });
@@ -52,7 +52,7 @@ router.delete('/:id/unsave', (req, res) => {
 router.delete('/:id', (req, res) => {
   const projectId = req.params.id;
   const sql = 'DELETE FROM projects WHERE id = ?';
-  db.query(sql, [projectId], (err, result) => {
+  db.query(sql, [projectId], (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Project deleted!' });
   });
