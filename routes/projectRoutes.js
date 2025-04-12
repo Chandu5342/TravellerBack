@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // Add new project
 router.post('/', async (req, res) => {
   const { title, description, category, author, image, language } = req.body;
-  const sql = `INSERT INTO projects (title, description, category, author, image_url, language) VALUES (?, ?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO projects (title, description, category, author, image, language) VALUES (?, ?, ?, ?, ?, ?)`;
   try {
     const [result] = await db.query(sql, [title, description, category, author, image, language]);
     res.json({ id: result.insertId, ...req.body });
